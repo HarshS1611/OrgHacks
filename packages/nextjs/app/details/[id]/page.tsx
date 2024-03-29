@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import FoodTimeline from "../components/foodtimeline/page";
+import ModalForm from "../components/form/page";
 import VenueTimeline from "../components/venuetimeline/page";
 
 const Details = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleTabClick = (tabId: any) => {
     setActiveTab(tabId);
@@ -12,7 +15,7 @@ const Details = () => {
 
   return (
     <>
-      <div className="m-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="m-4 border-b border-gray-100 dark:border-gray-600">
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
           <li className="me-2" role="presentation">
             <button
@@ -84,30 +87,37 @@ const Details = () => {
           </div>
         </div>
         <div
-          className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab === "dashboard" ? "" : "hidden"}`}
+          className={`p-4 rounded-lg  ${activeTab === "dashboard" ? "" : "hidden"}`}
           id="dashboard"
           role="tabpanel"
           aria-labelledby="dashboard-tab"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</strong>.
-            Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
-            classNamees to control the content visibility and styling.
-          </p>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            <FoodTimeline />
+          </div>
         </div>
         <div
-          className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab === "settings" ? "" : "hidden"}`}
+          className={`p-4 rounded-lg ${activeTab === "settings" ? "" : "hidden"}`}
           id="settings"
           role="tabpanel"
           aria-labelledby="settings-tab"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>.
-            Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps
-            classNamees to control the content visibility and styling.
-          </p>
+          <div className="flex justify-center gap-10 mt-10 text-white">
+            {/* <Form/> */}
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+            >
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Overall Sponsor</h5>
+            </button>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+            >
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bounty Sponsor</h5>
+            </button>
+          </div>
         </div>
         <div
           className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab === "contacts" ? "" : "hidden"}`}
@@ -123,6 +133,7 @@ const Details = () => {
           </p>
         </div>
       </div>
+      <ModalForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
