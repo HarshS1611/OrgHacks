@@ -1,5 +1,6 @@
 import React from "react";
 import { FC } from "react";
+import Link from "next/link";
 
 // import Image from "next/image";
 
@@ -37,14 +38,15 @@ const HackathonCard: FC = () => {
           <span className="text-blueLight font-medium">Devfolio</span>
         </p>
       </div>
-      <button
+      <Link
+        href={`/details/1`}
         //   onClick={() => {
         //     router.push(`/models/${model._id}`);
         //   }}
-        className="flex text-sm text-white bg-[#0284c7] hover:bg-blue-600 font-medium px-4 py-1.5 rounded-lg w-auto m-5"
+        className="flex text-sm text-white bg-[#0284c7] hover:bg-blue-600 font-medium px-4 py-1.5 rounded-lg w-max m-5"
       >
         View more
-      </button>
+      </Link>
     </div>
   );
 };
