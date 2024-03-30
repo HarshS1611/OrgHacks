@@ -135,7 +135,8 @@ const Details = () => {
           role="tabpanel"
           aria-labelledby="dashboard-tab"
         >
-          <div className="text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex gap-x-7 text-sm text-gray-500 dark:text-gray-400">
+            <FoodTimeline />
             <FoodTimeline />
           </div>
         </div>
