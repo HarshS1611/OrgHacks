@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const ReferralCard: FC = () => {
   return (
-    <div className="relative bg-[#242731] w-[1900px] h-max rounded-[20px] shadow-xl">
+    <div className="relative bg-[#242731] w-[1900px] h-max rounded-[20px] shadow-xl mt-10 py-5">
       <div className="flex flex-col">
         <div className="flex items-center justify-start mx-5 mt-1.5 gap-x-5">
           <div className="flex flex-col">
