@@ -31,12 +31,12 @@ const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
 
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+    const resp = new ethers.Contract(contract_add, HackathonManager.abi, signer);
 
-    const balance = await jobPortal.balanceOf(account);
+    const balance = await resp.balanceOf(account);
 
-    const approval = await jobPortal.approve("0x5ED7019fCA0E2eD33167c2792c07d1751a326873", balance);
-    const tx = await jobPortal.transferTokensToContract(ethers.utils.parseEther(voteCount.toString()));
+    const approval = await resp.approve("0x5ED7019fCA0E2eD33167c2792c07d1751a326873", balance);
+    const tx = await resp.transferTokensToContract(ethers.utils.parseEther(voteCount.toString()));
     await tx.wait();
     console.log(tx);
 
@@ -84,6 +84,16 @@ const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
           </button>
         </div>
       </div>
+      <iframe
+      className="px-4 py-10 rounded-lg"
+        src={map}
+        width="800"
+        height="400"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
   );
 };

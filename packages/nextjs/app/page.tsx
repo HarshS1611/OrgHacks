@@ -25,8 +25,8 @@ const Home = () => {
 
       // Using ethers.js for smart contract interaction
       const provider = new ethers.providers.Web3Provider(connection);
-      const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, provider);
-      const tx = await jobPortal.getAllHackathons();
+      const resp = new ethers.Contract(contract_add, HackathonManager.abi, provider);
+      const tx = await resp.getAllHackathons();
       console.log(tx);
       setHackathons(tx);
     };

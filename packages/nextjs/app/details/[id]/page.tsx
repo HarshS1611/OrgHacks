@@ -41,8 +41,8 @@ const Details = () => {
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
       const signer = provider.getSigner();
-      const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
-      const tx = await jobPortal.getHackathonDetails(id);
+      const resp = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+      const tx = await resp.getHackathonDetails(id);
       setHackDetails({
         name: tx[0],
         organizedBy: tx[1],
@@ -70,12 +70,12 @@ const Details = () => {
     console.log(ethers);
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
-    const tx = await jobPortal.joinHackathon(0, { value: ethers.utils.parseEther("0.002") });
+    const resp = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+    const tx = await resp.joinHackathon(0, { value: ethers.utils.parseEther("0.002") });
     await tx.wait();
 
     // Example of using web3.js to get the user's account address
-    console.log("Account address:", account, jobPortal);
+    console.log("Account address:", account, resp);
   };
 
   const [sponsors, setSponsors] = useState([]);
@@ -87,8 +87,8 @@ const Details = () => {
 
       // Using ethers.js for smart contract interaction
       const provider = new ethers.providers.Web3Provider(connection);
-      const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, provider);
-      const tx = await jobPortal.getHackathonSponsors(id);
+      const resp = new ethers.Contract(contract_add, HackathonManager.abi, provider);
+      const tx = await resp.getHackathonSponsors(id);
       console.log(tx);
       setSponsors(tx);
     };

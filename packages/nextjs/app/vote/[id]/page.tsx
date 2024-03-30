@@ -3,13 +3,19 @@
 import React, { useState } from "react";
 import Question from "../components/questions/page";
 import GoBackbtn from "~~/components/GoBack";
+import FoodQuestion from "../components/foodQuestions/page";
+import MiscQuestion from "../components/miscQuestion/page";
 
 const Home = () => {
   const [currentVenueQuestion, setCurrentVenueQuestion] = useState(0);
   const [currentFoodQuestion, setCurrentFoodQuestion] = useState(0);
+  const [currentMiscQuestion, setCurrentMiscQuestion] = useState(0);
+
 
   const [selectedVenueOption, setSelectedVenueOption] = useState<string[]>([]);
   const [selectedFoodOption, setSelectedFoodOption] = useState<string[]>([]);
+  const [selectedMiscOption, setSelectedMiscOption] = useState<string[]>([]);
+
 
   const [activeTab, setActiveTab] = useState("profile");
 
@@ -28,21 +34,41 @@ const Home = () => {
 
   const FoodQuestions = [
     {
-      question: "Choose an option:",
-      options: ["Option 1", "Option 2"],
+      question: "Choose an option: Starters",
+      options: ["Paneer Tikka", "Aloo Tikki",
+    "https://www.foodfusion.com/wp-content/uploads/2018/03/2-1.jpg",
+  "https://i.ndtvimg.com/i/2015-07/appetizers-625_625x350_41436947402.jpg"],
     },
     {
-      question: "Question 2:",
-      options: ["Option A", "Option B"],
+      question: "Choose an option: Main Course",
+      options: ["Chicken Roast", "Paneer Masala",
+    "https://images.immediate.co.uk/production/volatile/sites/2/2019/10/134_Roma_9780451497017_art_r1-facac84.jpg?quality=90&resize=700,466",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdFG_wyivSLOB7tiozZjoBEjBAAwpQYegCFA&usqp=CAU"],
     },
     {
-      question: "Question 3:",
-      options: ["Option X", "Option Y"],
+      question: "Choose an option: Desserts",
+      options: ["Cheese Cake", "Choco Cake",
+    "https://cdn.loveandlemons.com/wp-content/uploads/2021/06/summer-desserts.jpg",
+  "https://hips.hearstapps.com/hmg-prod/images/no-bake-buckeye-cheesecake-bars-lead-64b5646b6b074.jpg?crop=1.00xw:1.00xh;0,0&resize=640:*"],
+    },
+    
+  ];
+
+  const MiscQuestions = [
+    {
+      question: "Choose an option: ",
+      options: ["Bean Bag", "Mattress",
+    "https://rukminim2.flixcart.com/image/850/1000/xif0q/bean-bag/h/y/t/xxxl-beanbag-beige-3xl-swiner-original-imagngtndfgjyfzp.jpeg?q=90&crop=false",
+  "https://www.godrejinterio.com/imagestore/B2C/56101508SD05928/56101508SD05928_01_803x602.jpg"],
     },
     {
-      question: "Question 4:",
-      options: ["Option P", "Option Q"],
+      question: "Choose an option: ",
+      options: ["Red Bull", "Sting",
+    "https://api.freelogodesign.org/assets/blog/thumb/6457476a3cdd41118a31f81a20418b56_1176x840.jpg?t=638351341370000000",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRTuszJ-RoSYsV-nJh0qOtvJK_2GSm7Cctog&usqp=CAU"],
     },
+  
+    
   ];
 
   const handleVenueOptionSelect = (option: any) => {
@@ -53,7 +79,10 @@ const Home = () => {
     setSelectedFoodOption([...selectedFoodOption, option]);
     setCurrentFoodQuestion(currentFoodQuestion + 1);
   };
-  console.log(selectedFoodOption, selectedVenueOption);
+  const handleMiscOptionSelect = (option: any) => {
+    setSelectedMiscOption([...selectedMiscOption, option]);
+    setCurrentMiscQuestion(currentMiscQuestion + 1);
+  };
 
   return (
     <>
@@ -86,6 +115,19 @@ const Home = () => {
               Food
             </button>
           </li>
+          <li className="me-2" role="presentation">
+            <button
+              className={`inline-block p-4 rounded-t-lg  ${activeTab === "misc" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+                }`}
+              id="misc-tab"
+              onClick={() => handleTabClick("misc")}
+              role="tab"
+              aria-controls="misc"
+              aria-selected={activeTab === "misc"}
+            >
+              Misclleneous
+            </button>
+          </li>
         </ul>
       </div>
       <div className="m-5" id="default-tab-content">
@@ -97,11 +139,12 @@ const Home = () => {
         >
           {currentVenueQuestion >= VenueQuestions.length ? (
             <>
-              <div className="text-center mt-10 text-2xl font-bold">You have completed the questions.</div>
+              <div className="text-center mt-10 text-2xl font-bold">You have voted for all the available options..</div>
             </>
           ) : (
             <div className="text-sm text-gray-500 dark:text-gray-400">
               <Question
+              question={VenueQuestions[currentVenueQuestion].question}
                 options={VenueQuestions[currentVenueQuestion].options}
                 onOptionSelect={handleVenueOptionSelect}
               />
@@ -116,11 +159,27 @@ const Home = () => {
         >
           {currentFoodQuestion >= FoodQuestions.length ? (
             <>
-              <div className="text-center mt-10 text-2xl font-bold">You have completed the questions.</div>
+              <div className="text-center mt-10 text-2xl font-bold">You have voted for all the available options.</div>
             </>
           ) : (
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              <Question options={FoodQuestions[currentFoodQuestion].options} onOptionSelect={handleFoodOptionSelect} />
+              <FoodQuestion question={FoodQuestions[currentFoodQuestion].question} options={FoodQuestions[currentFoodQuestion].options} onOptionSelect={handleFoodOptionSelect} />
+            </div>
+          )}
+        </div>
+        <div
+          className={`p-4 rounded-lg  ${activeTab === "misc" ? "" : "hidden"}`}
+          id="misc"
+          role="tabpanel"
+          aria-labelledby="misc-tab"
+        >
+          {currentMiscQuestion >= MiscQuestions.length ? (
+            <>
+              <div className="text-center mt-10 text-2xl font-bold">You have voted for all the available options.</div>
+            </>
+          ) : (
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              <MiscQuestion question={MiscQuestions[currentMiscQuestion].question} options={MiscQuestions[currentMiscQuestion].options} onOptionSelect={handleMiscOptionSelect} />
             </div>
           )}
         </div>

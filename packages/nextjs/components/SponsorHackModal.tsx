@@ -37,17 +37,17 @@ const SponsorHackModal: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
     console.log(ethers);
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
-    const tx = await jobPortal.sponsorHackathon(id, sponsorData.name, sponsorData.threshold, {
+    const resp = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+    const tx = await resp.sponsorHackathon(id, sponsorData.name, sponsorData.threshold, {
       value: ethers.utils.parseEther(sponsorData.price),
     });
     await tx.wait();
 
     // Example of using web3.js to get the user's account address
-    console.log("Account address:", account, jobPortal);
+    console.log("Account address:", account, resp);
 
     // Example of using ethers.js to interact with the smart contract
-    // console.log("Project created!", jobPortal);
+    // console.log("Project created!", resp);
   };
 
   if (!isOpen) return null;
