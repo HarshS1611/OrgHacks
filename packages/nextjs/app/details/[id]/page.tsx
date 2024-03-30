@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import ReferralCard from "../components/card/page";
 import FoodTimeline from "../components/foodtimeline/page";
-import ModalForm from "../components/form/page";
 import VenueTimeline from "../components/venuetimeline/page";
 import GoBackbtn from "~~/components/GoBack";
+import SponsorHackModal from "~~/components/SponsorHackModal";
 
 const Details = () => {
   const [activeTab, setActiveTab] = useState("details");
@@ -150,7 +150,7 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <ModalForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <SponsorHackModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
