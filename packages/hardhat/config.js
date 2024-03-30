@@ -1,0 +1,1 @@
+export const contract_add = '0xbC45C1bD859A3AAbe0c838A98225E0Ae1Fc7b9D4';
