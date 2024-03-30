@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import HackathonManager from "../../../../hardhat/artifacts/contracts/HackathonManager.sol/HackathonManager.json";
 import { contract_add } from "../../../../hardhat/config";
 import ReferralCard from "../components/card/page";
@@ -13,6 +14,7 @@ import GoBackbtn from "~~/components/GoBack";
 import SponsorHackModal from "~~/components/SponsorHackModal";
 
 const Details = () => {
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState("details");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hackDetails, setHackDetails] = useState({
@@ -39,12 +41,12 @@ const Details = () => {
       const provider = new ethers.providers.Web3Provider(connection);
       const signer = provider.getSigner();
       const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
-      const tx = await jobPortal.getHackathonDetails(0);
+      const tx = await jobPortal.getHackathonDetails(id);
       setHackDetails({
         name: tx[0],
         organizedBy: tx[1],
         description: tx[2],
-        date: tx[3].toNumber(),
+        date: tx[3],
         city: tx[4],
         experience: tx[5],
         category: tx[6],
@@ -68,7 +70,7 @@ const Details = () => {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
-    const tx = await jobPortal.joinHackathon(0, { value: ethers.utils.parseUnits("2", "wei") });
+    const tx = await jobPortal.joinHackathon(0, { value: ethers.utils.parseEther("0.002") });
     await tx.wait();
 
     // Example of using web3.js to get the user's account address

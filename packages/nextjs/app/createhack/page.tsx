@@ -44,7 +44,7 @@ const CreateHack = () => {
       hackData._city,
       hackData._exp,
       hackData._category,
-      { value: ethers.utils.parseUnits("4", "wei") },
+      { value: ethers.utils.parseEther("0.005") },
     );
     await tx.wait();
 
