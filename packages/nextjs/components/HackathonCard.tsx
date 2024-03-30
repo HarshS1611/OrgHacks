@@ -7,15 +7,17 @@ import Link from "next/link";
 // import { useRouter } from "next/router";
 
 // const ModelCard: FC<{ model: any }> = ({ model }) => {
-const HackathonCard: FC = () => {
+const HackathonCard = ({ index, props }: any) => {
   return (
     <div className="relative bg-[#242731] w-64 sm:w-auto rounded-[20px] shadow-xl">
       <div className="flex flex-col">
         <div className="flex items-center justify-start mx-5 mt-1.5 gap-x-5">
           <div className="flex flex-col">
-            <h4 className={`text-base font-medium mt-2 text-[#B2B4C6]`}>EthIndia</h4>
+            <h4 className={`text-base font-medium mt-2 text-[#B2B4C6]`}>{props.name}</h4>
             <div className="flex items-center gap-x-2 my-1.5">
-              <span className={`text-xs font-medium text-white bg-gray-700 px-3 py-1 rounded-lg`}>Blockchain</span>
+              <span className={`text-xs font-medium text-white bg-gray-700 px-3 py-1 rounded-lg`}>
+                {props.category}
+              </span>
               <span className={`text-xs font-medium text-white bg-gray-700 px-3 py-1 rounded-lg`}>
                 <div className="flex gap-x-2 items-center">
                   {/* <Image src="/assets/demo-icon.svg" width={15} height={15} alt="demo" /> */}
@@ -26,20 +28,17 @@ const HackathonCard: FC = () => {
           </div>
         </div>
         <hr className="border-[#2B2F3D] mx-5" />
-        <p className="text-[#B2B4C6] text-sm px-5">
-          This is the short description of the hackathon. It should be a maximum of 3 lines. This is the short
-          description
-        </p>
+        <p className="text-[#B2B4C6] text-sm px-5">{props.description}</p>
         <div className="flex items-center gap-x-3.5 mx-5">
           <p className="flex gap-x-1 text-[#B2B4C6] text-xs">Voters: 3.2k</p>
         </div>
         <p className="flex gap-x-1 text-[#B2B4C6] text-xs mx-5 my-1.5">
           Organized by:
-          <span className="text-blueLight font-medium">Devfolio</span>
+          <span className="text-blueLight font-medium">{props.organisedby}</span>
         </p>
       </div>
       <Link
-        href={`/details/1`}
+        href={`/details/${index}`}
         //   onClick={() => {
         //     router.push(`/models/${model._id}`);
         //   }}
