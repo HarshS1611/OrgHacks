@@ -1,18 +1,78 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import HackathonManager from "../../../../hardhat/artifacts/contracts/HackathonManager.sol/HackathonManager.json";
+import { contract_add } from "../../../../hardhat/config";
 import ReferralCard from "../components/card/page";
 import FoodTimeline from "../components/foodtimeline/page";
-import VenueTimeline from "../components/venuetimeline/page";
+import ModalForm from "../components/form/page";
+import { ethers } from "ethers";
+import Web3 from "web3";
+import Web3Modal from "web3modal";
 import GoBackbtn from "~~/components/GoBack";
 import SponsorHackModal from "~~/components/SponsorHackModal";
 
 const Details = () => {
   const [activeTab, setActiveTab] = useState("details");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hackDetails, setHackDetails] = useState({
+    name: "EthMumbai",
+    description:
+      "EthMumbai is a 36-hour hackathon that will test your endurance and creativity . Come showcase your skills and win exciting prizes.",
+    city: "Mumbai, India",
+    category: "Blockchain",
+    experience: "Ninja",
+    organizedBy: "ETHGlobal",
+    date: "12th August 2021",
+    hackers: 2200,
+  } as any);
 
   const handleTabClick = (tabId: any) => {
     setActiveTab(tabId);
+  };
+
+  useEffect(() => {
+    //call the getHackathonDetails function here which comes from the smart contract
+    const getHackDetails = async () => {
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);
+      const signer = provider.getSigner();
+      const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+      const tx = await jobPortal.getHackathonDetails(0);
+      setHackDetails({
+        name: tx[0],
+        organizedBy: tx[1],
+        description: tx[2],
+        date: tx[3].toNumber(),
+        city: tx[4],
+        experience: tx[5],
+        category: tx[6],
+        hackers: tx[7].toNumber(),
+      });
+    };
+    getHackDetails();
+  }, []);
+
+  const handleAddStake = async () => {
+    // e.preventDefault();
+    // console.log(modelData)
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const web3 = new Web3(connection);
+    const accounts = await web3.eth.getAccounts();
+    const account = accounts[0]; // Assuming you want the first account
+
+    // Using ethers.js for smart contract interaction
+    console.log(ethers);
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+    const tx = await jobPortal.joinHackathon(0, { value: ethers.utils.parseUnits("2", "wei") });
+    await tx.wait();
+
+    // Example of using web3.js to get the user's account address
+    console.log("Account address:", account, jobPortal);
   };
 
   return (
@@ -22,38 +82,35 @@ const Details = () => {
         <div className="flex flex-col md:flex-row my-2">
           <h3 className="text-lg font-semibold md:ml-2">Name:</h3>
 
-          <p className="text-sm md:ml-2 mt-1">EthMumbai</p>
+          <p className="text-sm md:ml-2 mt-1">{hackDetails.name}</p>
         </div>
         <div className="flex flex-col md:flex-row my-2">
           <h3 className="text-lg font-semibold md:ml-2">Description:</h3>
 
-          <p className="text-sm md:ml-2 mt-1">
-            EthMumbai is a 36-hour hackathon that will test your endurance and creativity . Come showcase your skills
-            and win exciting prizes.
-          </p>
+          <p className="text-sm md:ml-2 mt-1">{hackDetails.description}</p>
         </div>
         <div className="flex flex-col md:flex-row mx-2 my-2">
           <h3 className="text-lg font-semibold">Hackers:</h3>
 
-          <p className="text-sm md:ml-2 mt-1">2.2k</p>
+          <p className="text-sm md:ml-2 mt-1">{hackDetails.hackers}</p>
         </div>
         <div className="flex flex-col md:flex-row my-2">
           <h3 className="text-lg font-semibold">📌City:</h3>
 
-          <p className="text-sm md:ml-2 mt-1">Mumbai, India</p>
+          <p className="text-sm md:ml-2 mt-1">{hackDetails.city}</p>
         </div>
         <div className="flex flex-col md:flex-row my-2">
           <h3 className="text-lg font-semibold md:ml-2">Category:</h3>
 
-          <p className="text-sm md:ml-2 mt-1">Blockchain</p>
+          <p className="text-sm md:ml-2 mt-1">{hackDetails.category}</p>
         </div>
         <div className="flex flex-col md:flex-row my-2">
           <h3 className="text-lg font-semibold md:ml-2">Min level:</h3>
 
-          <p className="text-sm md:ml-2 mt-1">Ninja</p>
+          <p className="text-sm md:ml-2 mt-1">{hackDetails.category}</p>
         </div>
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleAddStake}
           className="block max-w-sm px-5 py-2 bg-blue-500 rounded-lg shadow hover:bg-blue-600"
         >
           <h5 className="mb-2 text-base font-bold tracking-tight text-white">Stake</h5>
