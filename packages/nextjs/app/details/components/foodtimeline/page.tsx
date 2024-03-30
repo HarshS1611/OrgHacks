@@ -31,7 +31,7 @@ const FoodTimeline = ({ hackers }) => {
   return (
     <div className="border-[1px] border-gray-500 w-full rounded-xl bg-gray-800 p-10">
       <ol className="relative border-s-2 border-gray-200 dark:border-green-500 border-dashed">
-        <li className="mb-10 ms-6 w-64">
+        <li className="mb-10 ms-6 w-full">
           <span className="absolute flex items-center justify-center w-10 h-10 rounded-full -start-5">
             <div className={glowClasses3 ? `bg-green-200 w-20 rounded-full p-1` : `bg-slate-600 w-20 rounded-full p-1`}>
               <div className={glowClasses3 ? `bg-green-400 rounded-full p-1` : `bg-slate-600 rounded-full p-1`}>
@@ -47,7 +47,7 @@ const FoodTimeline = ({ hackers }) => {
               </div>
             </div>
           </span>
-          <details className="ml-4 p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600">
+          <details className={glowClasses3 ? "ml-4 p-3 border rounded-lg shadow-sm bg-gray-700 border-green-600 text-white" : "ml-4 p-3 border text-white rounded-lg shadow-sm bg-gray-700 border-gray-600"}>
             <summary className="flex items-center justify-between">
               <div className="">Best Caterer</div>
               <div className="mx-2 flex w-10 items-center justify-center">
@@ -60,7 +60,7 @@ const FoodTimeline = ({ hackers }) => {
             <p>5 star</p>
           </details>
         </li>
-        <li className="mb-10 ms-6 w-64">
+        <li className="mb-10 ms-6 w-full">
           <span className="absolute flex items-center justify-center w-10 h-10 rounded-full -start-5">
             <div className={glowClasses2 ? `bg-green-200 w-20 rounded-full p-1` : `bg-slate-600 w-20 rounded-full p-1`}>
               <div className={glowClasses2 ? `bg-green-400 rounded-full p-1` : `bg-slate-600 rounded-full p-1`}>
@@ -76,7 +76,7 @@ const FoodTimeline = ({ hackers }) => {
               </div>
             </div>
           </span>
-          <details className="ml-4 p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600">
+          <details className={glowClasses2 ? "ml-4 p-3 border rounded-lg shadow-sm bg-gray-700 border-green-600 text-white" : "text-white ml-4 p-3 border rounded-lg shadow-sm bg-gray-700 border-gray-600"}>
             <summary className="flex items-center justify-between">
               <div className="">Average Caterer</div>
               <div className="mx-2 flex w-10 items-center justify-center">
@@ -89,7 +89,7 @@ const FoodTimeline = ({ hackers }) => {
             <p>3.5 star</p>
           </details>
         </li>
-        <li className="ms-6 w-64">
+        <li className="ms-6 w-full">
           <span className="absolute flex items-center justify-center w-10 h-10 rounded-full -start-5">
             <div className={glowClasses1 ? `bg-green-200 w-20 rounded-full p-1` : `bg-slate-600 w-20 rounded-full p-1`}>
               <div className={glowClasses1 ? `bg-green-400 rounded-full p-1` : `bg-slate-600 rounded-full p-1`}>
@@ -105,7 +105,7 @@ const FoodTimeline = ({ hackers }) => {
               </div>
             </div>
           </span>
-          <details className="ml-4 p-3 bg-white border border-green-400 rounded-lg shadow-sm dark:bg-gray-700 dark:border-green-600">
+          <details className={glowClasses1 ? "ml-4 p-3 border rounded-lg shadow-sm bg-gray-700 border-green-600" : "ml-4 p-3 border rounded-lg shadow-sm bg-gray-700 border-gray-600"}>
             <summary className="flex items-center justify-between">
               <div className="text-white">Mediocre Caterer</div>
               <div className="mx-2 flex w-10 items-center justify-center">

@@ -13,6 +13,7 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import GoBackbtn from "~~/components/GoBack";
 import SponsorHackModal from "~~/components/SponsorHackModal";
+import VenueTimeline from "../components/venuetimeline/page";
 
 const Details = () => {
   const { id } = useParams();
@@ -190,7 +191,7 @@ const Details = () => {
           aria-labelledby="dashboard-tab"
         >
           <div className="flex gap-x-7 text-sm text-gray-500 dark:text-gray-400">
-            <FoodTimeline hackers={hackDetails.hackers} />
+            <VenueTimeline hackers={hackDetails.hackers} />
             <FoodTimeline hackers={hackDetails.hackers} />
             <ReferralCard />
           </div>
