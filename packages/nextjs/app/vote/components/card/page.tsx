@@ -12,10 +12,14 @@ import Web3Modal from "web3modal";
 interface CardProps {
   title: string;
   map: string;
+  tag1: string;
+  tag2: string;
+  description: string;
+  voters: string;
   onClick: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
+const Card: React.FC<CardProps> = ({ title, map, tag1, tag2, description, voters, onClick }) => {
   const [voteCount, setVoteCount] = useState(0);
   const handleVoteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Parse the input value as a number and update the voteCount state
@@ -50,28 +54,22 @@ const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
           <div className="flex flex-col">
             <h4 className={`text-lg font-medium mt-2 text-[#B2B4C6]`}>{title}</h4>
             <div className="flex items-center gap-x-2 my-1.5">
-              <span className={`text-md font-medium text-white bg-gray-700 px-3 py-1 rounded-lg`}>Blockchain</span>
+              <span className={`text-md font-medium text-white bg-gray-700 px-3 py-1 rounded-lg`}>{tag1}</span>
               <span className={`text-md font-medium text-white bg-gray-700 px-3 py-1 rounded-lg`}>
                 <div className="flex gap-x-2 items-center">
                   {/* <Image src="/assets/demo-icon.svg" width={15} height={15} alt="demo" /> */}
-                  <span>Registration open</span>
+                  <span>{tag2}</span>
                 </div>
               </span>
             </div>
           </div>
         </div>
         <hr className="border-[#2B2F3D] mx-5" />
-        <p className="text-[#B2B4C6] text-md px-5">
-          This is the short description of the hackathon. It should be a maximum of 3 lines. This is the short
-          description
-        </p>
+        <p className="text-[#B2B4C6] text-md px-5">{description}</p>
         <div className="flex items-center gap-x-3.5 mx-5">
-          <p className="flex gap-x-1 text-[#B2B4C6] text-md">Voters: 3.2k</p>
+          <p className="flex gap-x-1 text-[#B2B4C6] text-md">Voters: {voters}</p>
         </div>
-        <p className="flex gap-x-1 text-[#B2B4C6] text-md mx-5 my-1.5">
-          Organized by:
-          <span className="text-blueLight font-medium">Devfolio</span>
-        </p>
+
         <div className="flex items-center mx-6">
           <input
             type="text"
@@ -85,7 +83,7 @@ const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
         </div>
       </div>
       <iframe
-      className="px-4 py-10 rounded-lg"
+        className="px-4 py-10 rounded-lg"
         src={map}
         width="800"
         height="400"
