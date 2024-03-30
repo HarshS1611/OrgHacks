@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import ReferralCard from "../components/card/page";
 import FoodTimeline from "../components/foodtimeline/page";
 import ModalForm from "../components/form/page";
 import VenueTimeline from "../components/venuetimeline/page";
 import GoBackbtn from "~~/components/GoBack";
 
 const Details = () => {
-  const [activeTab, setActiveTab] = useState("");
+  const [activeTab, setActiveTab] = useState("details");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleTabClick = (tabId: any) => {
@@ -114,6 +115,7 @@ const Details = () => {
           <div className="flex gap-x-7 text-sm text-gray-500 dark:text-gray-400">
             <FoodTimeline />
             <FoodTimeline />
+            <ReferralCard />
           </div>
         </div>
         <div
