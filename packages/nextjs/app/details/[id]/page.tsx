@@ -13,6 +13,7 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import GoBackbtn from "~~/components/GoBack";
 import SponsorHackModal from "~~/components/SponsorHackModal";
+import VenueTimeline from "../components/venuetimeline/page";
 
 const Details = () => {
   const { id } = useParams();
@@ -98,7 +99,7 @@ const Details = () => {
   return (
     <>
       <GoBackbtn />
-      <div className="bg-[#1a1e27] rounded-xl p-5 mt-7 mx-6">
+      <div className="bg-[#1a1e27] h-max rounded-xl p-4 mt-2 mx-6">
         <div className="flex flex-col md:flex-row my-2">
           <h3 className="text-lg font-semibold md:ml-2">Name:</h3>
 
@@ -133,7 +134,7 @@ const Details = () => {
           onClick={handleAddStake}
           className="block max-w-sm px-5 py-2 bg-blue-500 rounded-lg shadow hover:bg-blue-600"
         >
-          <h5 className="mb-2 text-base font-bold tracking-tight text-white">Stake</h5>
+          <h5 className=" text-base font-bold tracking-tight text-white">Stake</h5>
         </button>
       </div>
       <div className="m-4 border-b border-gray-100 dark:border-gray-600">
@@ -190,7 +191,7 @@ const Details = () => {
           aria-labelledby="dashboard-tab"
         >
           <div className="flex gap-x-7 text-sm text-gray-500 dark:text-gray-400">
-            <FoodTimeline hackers={hackDetails.hackers} />
+            <VenueTimeline hackers={hackDetails.hackers} />
             <FoodTimeline hackers={hackDetails.hackers} />
             <ReferralCard />
           </div>
