@@ -15,6 +15,11 @@ const FoodTimeline = ({ hackers }:VenueTimelineProps) => {
 
   const progressPercentage = (hackers / 10) * 100;
 
+  const handleAddVote = () => {
+    //call backend api to add vote
+    console.log("Voted");
+  };
+
   useEffect(() => {
     // Apply the glow class based on the number of hackers
     if (hackers >= 7) {
@@ -140,7 +145,10 @@ const FoodTimeline = ({ hackers }:VenueTimelineProps) => {
         </li>
       </ol>
       <div className="flex flex-col gap-x-2 mt-12 -mx-2">
-        <button className="bg-blue-500 w-fit text-white px-3 py-1 rounded-lg flex items-center gap-x-1">
+        <button
+          onClick={handleAddVote}
+          className="bg-blue-500 w-fit text-white px-3 py-1 rounded-lg flex items-center gap-x-1"
+        >
           Vote Now
         </button>
         <p className="text-white text-sm font-semibold ml-2">{hackers} hackers have preferred food quality</p>
