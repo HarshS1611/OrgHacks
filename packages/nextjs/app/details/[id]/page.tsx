@@ -8,6 +8,7 @@ import ReferralCard from "../components/card/page";
 import FoodTimeline from "../components/foodtimeline/page";
 import ModalForm from "../components/form/page";
 import SponsorCard from "../components/sponsorCard/page";
+import VenueTimeline from "../components/venuetimeline/page";
 import { ethers } from "ethers";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
@@ -189,6 +190,7 @@ const Details = () => {
           role="tabpanel"
           aria-labelledby="dashboard-tab"
         >
+          <h3 className="text-xl text-white font-semibold mb-5 -mt-5 underline">Choose your preference:</h3>
           <div className="flex gap-x-7 text-sm text-gray-500 dark:text-gray-400">
             <FoodTimeline hackers={hackDetails.hackers} />
             <FoodTimeline hackers={hackDetails.hackers} />
