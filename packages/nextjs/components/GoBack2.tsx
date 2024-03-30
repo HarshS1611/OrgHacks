@@ -26,21 +26,20 @@ const GoBackbtn = () => {
       const balance = await resp.balanceOf(account);
       console.log(balance)
       console.log(parseInt(balance._hex, 16) / 1000000000000000000);
-      setBal(balance._hex);
+      setBal((balance / 10 ** 18).toString());
     };
     fetchAccountBalance();
   }, []);
   return (
     <Link href="/">
       <div className="flex items-center justify-between text-white w-full text-lg mx-3 px-5 py-2 rounded-xl mt-5">
-        <div className="flex items-center gap-2">
+        <div className="flex gap-2">
           <div className="inline-block mr-2 text-white">
             <FaArrowLeft />
           </div>
           <div>Go Back</div>
         </div>
-                <div className="text-2xl">Registration Ends in 3 days</div>
-
+        <div className="text-2xl">Hackathon starts in 10 days</div>
         <div className="mx-4">Token Balance : {parseInt(bal, 16) / 1000000000000000000} XHACKS</div>
       </div>
     </Link>

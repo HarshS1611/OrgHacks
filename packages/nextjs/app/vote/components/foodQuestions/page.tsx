@@ -14,9 +14,9 @@ const FoodQuestion: React.FC<QuestionProps> = ({question, options, onOptionSelec
     <div className="question flex flex-col h-screen items-center">
       <h1 className="text-2xl mt-5 font-bold mb-2">{question}</h1>
       <div className="flex gap-6 items-center h-full">
-        <FoodCard title={options[0]} map={options[2]} onClick={() => onOptionSelect(options[0])} />
+        <FoodCard title={options[0]} map={options[2]} voters={options[4]} onClick={() => onOptionSelect(options[0])} />
         <span className="text-2xl font-bold">OR</span>
-        <FoodCard title={options[1]} map={options[3]} onClick={() => onOptionSelect(options[1])} />
+        <FoodCard title={options[1]} map={options[3]} voters={options[5]} onClick={() => onOptionSelect(options[1])} />
       </div>
     </div>
   );

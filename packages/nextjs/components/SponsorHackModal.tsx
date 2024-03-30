@@ -107,7 +107,7 @@ const SponsorHackModal: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
                 type="submit"
                 // onClick={handleAddTask}
               >
-                Add Task
+                Confirm Details
               </button>
             </form>
           </div>
