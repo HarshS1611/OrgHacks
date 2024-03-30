@@ -5,19 +5,52 @@ import { IoIosArrowDown } from "react-icons/io";
 
 interface VenueTimelineProps {
   hackers: number;
- }
+}
 
-const VenueTimeline = ({ hackers }:VenueTimelineProps) => {
+const VenueTimeline = ({ hackers }: VenueTimelineProps) => {
   const [glowClasses1, setGlowClasses1] = useState(false);
   const [glowClasses2, setGlowClasses2] = useState(false);
+  const [venueVotes, setVenueVotes] = useState(0);
 
   const [glowClasses3, setGlowClasses3] = useState(false);
 
   const progressPercentage = (hackers / 10) * 100;
 
-  const handleAddVote = () => {
+  useEffect(() => {
+    try {
+      fetch("/api/getvotes")
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          setVenueVotes(data.venueVotes);
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
+  const handleAddVote = async () => {
     //call backend api to add vote
-    console.log("Voted");
+    try {
+      const response = await fetch("/api/addvote", {
+        method: "POST",
+        body: JSON.stringify({ type: "venue" }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("Vote added successfully");
+        alert("Vote added successfully");
+        //reload the page to update the votes
+        window.location.reload();
+      } else {
+        console.error("Failed to add vote");
+      }
+    } catch (err) {
+      console.error("Failed to add vote");
+    }
   };
 
   useEffect(() => {
@@ -151,7 +184,7 @@ const VenueTimeline = ({ hackers }:VenueTimelineProps) => {
         >
           Vote Now
         </button>
-        <p className="text-white text-sm font-semibold ml-2">{hackers} hackers have preferred venue</p>
+        <p className="text-white text-sm font-semibold ml-2">{venueVotes} hackers have preferred venue</p>
       </div>
     </div>
   );
