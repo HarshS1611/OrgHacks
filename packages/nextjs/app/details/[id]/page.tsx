@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import FoodTimeline from "../components/foodtimeline/page";
 import ModalForm from "../components/form/page";
 import VenueTimeline from "../components/venuetimeline/page";
+import GoBackbtn from "~~/components/GoBack";
 
 const Details = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -15,6 +16,48 @@ const Details = () => {
 
   return (
     <>
+      <GoBackbtn />
+      <div className="bg-[#1a1e27] rounded-xl p-5 mt-7 mx-6">
+        <div className="flex flex-col md:flex-row my-2">
+          <h3 className="text-lg font-semibold md:ml-2">Name:</h3>
+
+          <p className="text-sm md:ml-2 mt-1">EthMumbai</p>
+        </div>
+        <div className="flex flex-col md:flex-row my-2">
+          <h3 className="text-lg font-semibold md:ml-2">Description:</h3>
+
+          <p className="text-sm md:ml-2 mt-1">
+            EthMumbai is a 36-hour hackathon that will test your endurance and creativity . Come showcase your skills
+            and win exciting prizes.
+          </p>
+        </div>
+        <div className="flex flex-col md:flex-row mx-2 my-2">
+          <h3 className="text-lg font-semibold">Hackers:</h3>
+
+          <p className="text-sm md:ml-2 mt-1">2.2k</p>
+        </div>
+        <div className="flex flex-col md:flex-row my-2">
+          <h3 className="text-lg font-semibold">📌Venue:</h3>
+
+          <p className="text-sm md:ml-2 mt-1">Mumbai, India</p>
+        </div>
+        <div className="flex flex-col md:flex-row my-2">
+          <h3 className="text-lg font-semibold md:ml-2">Category:</h3>
+
+          <p className="text-sm md:ml-2 mt-1">Blockchain</p>
+        </div>
+        <div className="flex flex-col md:flex-row my-2">
+          <h3 className="text-lg font-semibold md:ml-2">Min level:</h3>
+
+          <p className="text-sm md:ml-2 mt-1">Ninja</p>
+        </div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="block max-w-sm px-5 py-2 bg-blue-500 rounded-lg shadow hover:bg-blue-600"
+        >
+          <h5 className="mb-2 text-base font-bold tracking-tight text-white">Stake</h5>
+        </button>
+      </div>
       <div className="m-4 border-b border-gray-100 dark:border-gray-600">
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
           <li className="me-2" role="presentation">
