@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import FoodQuestion from "../components/foodQuestions/page";
 import MiscQuestion from "../components/miscQuestion/page";
 import Question from "../components/questions/page";
-import GoBackbtn from "~~/components/GoBack";
+import GoBackbtn from "~~/components/GoBack2";
 
 const Home = () => {
   const [currentVenueQuestion, setCurrentVenueQuestion] = useState(0);

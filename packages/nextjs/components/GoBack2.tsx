@@ -39,7 +39,7 @@ const GoBackbtn = () => {
           </div>
           <div>Go Back</div>
         </div>
-        <div className="text-2xl">Registration Ends in 3 days</div>
+        <div className="text-2xl">Hackathon starts in 10 days</div>
         <div>{bal} XHACKS</div>
       </div>
     </Link>
