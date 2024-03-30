@@ -19,10 +19,7 @@ const Home = () => {
   const [hackathons, setHackathons] = useState([]);
   useEffect(() => {
     const fetchHackathons = async () => {
-      const { isApiReady } = useApi();
-      const { isAccountReady } = useAccount();
 
-      const isAppReady = isApiReady && isAccountReady;
       // If MetaMask is not connected, use Web3Modal to connect
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
