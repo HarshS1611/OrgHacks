@@ -40,7 +40,7 @@ const GoBackbtn = () => {
           <div>Go Back</div>
         </div>
         <div className="text-2xl">Hackathon starts in 10 days</div>
-        <div>{bal} XHACKS</div>
+        <div className="mx-4">Token Balance : {parseInt(bal, 16) / 1000000000000000000} XHACKS</div>
       </div>
     </Link>
   );
