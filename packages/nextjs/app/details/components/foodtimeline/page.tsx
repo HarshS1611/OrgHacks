@@ -10,7 +10,7 @@ const FoodTimeline = () => {
     setActiveAccordion(id);
   };
   return (
-    <div className="border-2 border-white w-full rounded-xl bg-gray-800 p-10">
+    <div className="border-[1px] border-gray-500 w-full rounded-xl bg-gray-800 p-10">
       <ol className="relative border-s-2 border-gray-200 dark:border-blue-500  border-dashed">
         <li className="mb-10 ms-6 w-64">
           <span className="absolute flex items-center justify-center w-10 h-10 rounded-full -start-5">
