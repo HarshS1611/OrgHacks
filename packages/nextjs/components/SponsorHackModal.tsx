@@ -92,7 +92,7 @@ const SponsorHackModal: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
               />
               <label className="block text-white text-sm font-semibold mb-1">Price(ETH)*</label>
               <input
-                type="number"
+                type="text"
                 className="shadow appearance-none border rounded w-full text-white
                                        block h-10 bg-[#ffffff12] text-white rounded-lg px-2 border border-slate-600 py-5 mt-2 mb-2 mr-10 text-sm w-full focus:outline-none
                                         transition transform duration-100 ease-out"
