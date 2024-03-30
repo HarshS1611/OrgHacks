@@ -105,9 +105,9 @@ const FoodTimeline = ({ hackers }) => {
               </div>
             </div>
           </span>
-          <details className="ml-4 p-3 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600">
+          <details className="ml-4 p-3 bg-white border border-green-400 rounded-lg shadow-sm dark:bg-gray-700 dark:border-green-600">
             <summary className="flex items-center justify-between">
-              <div className="">Mediocre Caterer</div>
+              <div className="text-white">Mediocre Caterer</div>
               <div className="mx-2 flex w-10 items-center justify-center">
                 <IoIosArrowDown />
               </div>
