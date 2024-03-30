@@ -187,8 +187,8 @@ const Details = () => {
           aria-labelledby="dashboard-tab"
         >
           <div className="flex gap-x-7 text-sm text-gray-500 dark:text-gray-400">
-            <FoodTimeline />
-            <FoodTimeline />
+            <FoodTimeline hackers={hackDetails.hackers} />
+            <FoodTimeline hackers={hackDetails.hackers} />
             <ReferralCard />
           </div>
         </div>
