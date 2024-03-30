@@ -7,12 +7,12 @@ import { contract_add } from "../../../../hardhat/config";
 import ReferralCard from "../components/card/page";
 import FoodTimeline from "../components/foodtimeline/page";
 import ModalForm from "../components/form/page";
+import SponsorCard from "../components/sponsorCard/page";
 import { ethers } from "ethers";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import GoBackbtn from "~~/components/GoBack";
 import SponsorHackModal from "~~/components/SponsorHackModal";
-import SponsorCard from "../components/sponsorCard/page";
 
 const Details = () => {
   const { id } = useParams();
@@ -140,8 +140,9 @@ const Details = () => {
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg ${activeTab === "details" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-                }`}
+              className={`inline-block p-4 rounded-t-lg ${
+                activeTab === "details" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+              }`}
               id="profile-tab"
               onClick={() => handleTabClick("details")}
               role="tab"
@@ -153,8 +154,9 @@ const Details = () => {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4  rounded-t-lg  ${activeTab === "sponsors" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-                }`}
+              className={`inline-block p-4  rounded-t-lg  ${
+                activeTab === "sponsors" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+              }`}
               id="settings-tab"
               onClick={() => handleTabClick("sponsors")}
               role="tab"
@@ -166,8 +168,9 @@ const Details = () => {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg  ${activeTab === "sponsor" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-                }`}
+              className={`inline-block p-4 rounded-t-lg  ${
+                activeTab === "sponsor" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+              }`}
               id="dashboard-tab"
               onClick={() => handleTabClick("sponsor")}
               role="tab"
@@ -198,10 +201,9 @@ const Details = () => {
           role="tabpanel"
           aria-labelledby="settings-tab"
         >
-
           <div className="flex gap-10 w-full">
             {sponsors.map((sponsor, index) => (
-              <SponsorCard index={index} props={sponsor} />
+              <SponsorCard key={index} index={index} props={sponsor} />
             ))}
           </div>
         </div>
