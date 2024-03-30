@@ -1,6 +1,6 @@
 "use client";
 
-// import { AnonAadhaarProvider } from "@anon-aadhaar/react";
+import { AnonAadhaarProvider } from "@anon-aadhaar/react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders";
 import { ThemeProvider } from "~~/components/ThemeProvider";
@@ -10,11 +10,11 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   return (
     <html suppressHydrationWarning>
       <body>
-        {/* <AnonAadhaarProvider> */}
-        <ThemeProvider enableSystem>
-          <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
-        </ThemeProvider>
-        {/* </AnonAadhaarProvider> */}
+        <AnonAadhaarProvider>
+          <ThemeProvider enableSystem>
+            <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
+          </ThemeProvider>
+        </AnonAadhaarProvider>
       </body>
     </html>
   );
