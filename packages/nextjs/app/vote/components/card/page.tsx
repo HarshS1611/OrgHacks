@@ -4,10 +4,11 @@ import Link from "next/link";
 
 interface CardProps {
   title: string;
+  map: string;
   onClick: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ title, onClick }) => {
+const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
   return (
     <div
       className="relative cursor-pointer mx-6 px-2 py-4 bg-[#242731] h-[500px] w-64 sm:w-auto rounded-[20px] shadow-xl"

@@ -20,20 +20,8 @@ const Home = () => {
   const VenueQuestions = [
     {
       question: "Choose an option:",
-      options: ["Option 1", "Option 2"],
-    },
-    {
-      question: "Question 2:",
-      options: ["Option A", "Option B"],
-    },
-    {
-      question: "Question 3:",
-      options: ["Option X", "Option Y"],
-    },
-    {
-      question: "Question 4:",
-      options: ["Option P", "Option Q"],
-    },
+      options: ["Smriti Upvan", "Hotel Taj","https://www.google.com/maps/place/Smriti+Upvan,+Jalvayu+Vihar,+Ashiyana,+Lucknow,+Uttar+Pradesh+226012/@26.7865567,80.921799,15.6z/data=!4m6!3m5!1s0x399bfbf54d989c0d:0xa1252f4a2636da19!8m2!3d26.7873044!4d80.9204281!16s%2Fg%2F11b8tf3lv5?entry=ttu", "https://www.google.com/maps/place/Taj+Mahal+Lucknow/@26.8515925,80.9709916,17z/data=!3m1!4b1!4m9!3m8!1s0x399bfd3a99fba681:0xe82b751c187af53b!5m2!4m1!1i2!8m2!3d26.8515925!4d80.9735719!16s%2Fg%2F1wnd_gt9?entry=ttu"],
+    }
   ];
   const FoodQuestions = [
     {
