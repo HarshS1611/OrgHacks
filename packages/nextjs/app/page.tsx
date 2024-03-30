@@ -17,19 +17,11 @@ import Navbar from "~~/components/Navbar";
 const Home = () => {
   // const { address: connectedAddress } = useAccount();
   const [hackathons, setHackathons] = useState([]);
-
   useEffect(() => {
     const fetchHackathons = async () => {
-      let connection;
-
-      // Check if MetaMask is installed and connected
-      if (typeof window.ethereum !== "undefined" && (window.ethereum as any).isConnected()) {
-        connection = window.ethereum;
-      } else {
-        // If MetaMask is not connected, use Web3Modal to connect
-        const web3Modal = new Web3Modal();
-        connection = await web3Modal.connect();
-      }
+      // If MetaMask is not connected, use Web3Modal to connect
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
 
       // Using ethers.js for smart contract interaction
       const provider = new ethers.providers.Web3Provider(connection);
@@ -38,7 +30,6 @@ const Home = () => {
       console.log(tx);
       setHackathons(tx);
     };
-
     fetchHackathons();
   }, []);
 
