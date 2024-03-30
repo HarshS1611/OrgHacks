@@ -11,7 +11,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
   return (
     <div
-      className="relative cursor-pointer mx-6 px-2 py-4 bg-[#242731] h-[500px] w-64 sm:w-auto rounded-[20px] shadow-xl"
+      className="relative cursor-pointer mx-6 px-2 py-4 bg-[#242731] h-max w-64 sm:w-auto rounded-[20px] shadow-xl"
       onClick={onClick}
     >
       <div className="flex flex-col">
@@ -42,15 +42,16 @@ const Card: React.FC<CardProps> = ({ title, map, onClick }) => {
           <span className="text-blueLight font-medium">Devfolio</span>
         </p>
       </div>
-      <Link
-        href={`/details/1`}
-        //   onClick={() => {
-        //     router.push(`/models/${model._id}`);
-        //   }}
-        className="flex text-md text-white bg-[#0284c7] hover:bg-blue-600 font-medium px-4 py-1.5 rounded-lg w-max m-5"
-      >
-        View more
-      </Link>
+      <iframe
+      className="px-4 py-10 rounded-lg"
+        src={map}
+        width="800"
+        height="400"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
   );
 };

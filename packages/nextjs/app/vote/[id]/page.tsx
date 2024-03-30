@@ -20,9 +20,12 @@ const Home = () => {
   const VenueQuestions = [
     {
       question: "Choose an option:",
-      options: ["Smriti Upvan", "Hotel Taj","https://www.google.com/maps/place/Smriti+Upvan,+Jalvayu+Vihar,+Ashiyana,+Lucknow,+Uttar+Pradesh+226012/@26.7865567,80.921799,15.6z/data=!4m6!3m5!1s0x399bfbf54d989c0d:0xa1252f4a2636da19!8m2!3d26.7873044!4d80.9204281!16s%2Fg%2F11b8tf3lv5?entry=ttu", "https://www.google.com/maps/place/Taj+Mahal+Lucknow/@26.8515925,80.9709916,17z/data=!3m1!4b1!4m9!3m8!1s0x399bfd3a99fba681:0xe82b751c187af53b!5m2!4m1!1i2!8m2!3d26.8515925!4d80.9735719!16s%2Fg%2F1wnd_gt9?entry=ttu"],
+      options: ["Smriti Upvan", "Hotel Taj",
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1780.8302719674755!2d80.919590638875!3d26.78708849418054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfbf54d989c0d%3A0xa1252f4a2636da19!2sSmriti%20Upvan%2C%20Jalvayu%20Vihar%2C%20Ashiyana%2C%20Lucknow%2C%20Uttar%20Pradesh%20226012!5e0!3m2!1sen!2sin!4v1711821915781!5m2!1sen!2sin",
+        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.6339548925434!2d80.9709969761558!3d26.85159247668364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd3a99fba681%3A0xe82b751c187af53b!2sTaj%20Mahal%20Lucknow!5e0!3m2!1sen!2sin!4v1711822134632!5m2!1sen!2sin'],
     }
   ];
+
   const FoodQuestions = [
     {
       question: "Choose an option:",
@@ -59,9 +62,8 @@ const Home = () => {
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg ${
-                activeTab === "profile" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-              }`}
+              className={`inline-block p-4 rounded-t-lg ${activeTab === "profile" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+                }`}
               id="profile-tab"
               onClick={() => handleTabClick("profile")}
               role="tab"
@@ -73,9 +75,8 @@ const Home = () => {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg  ${
-                activeTab === "dashboard" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-              }`}
+              className={`inline-block p-4 rounded-t-lg  ${activeTab === "dashboard" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+                }`}
               id="dashboard-tab"
               onClick={() => handleTabClick("dashboard")}
               role="tab"
