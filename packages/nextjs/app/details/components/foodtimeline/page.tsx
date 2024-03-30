@@ -3,7 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-const FoodTimeline = ({ hackers }) => {
+interface VenueTimelineProps {
+  hackers: number;
+ }
+
+const FoodTimeline = ({ hackers }:VenueTimelineProps) => {
   const [glowClasses1, setGlowClasses1] = useState(false);
   const [glowClasses2, setGlowClasses2] = useState(false);
 
