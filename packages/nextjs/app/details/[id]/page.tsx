@@ -12,6 +12,7 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import GoBackbtn from "~~/components/GoBack";
 import SponsorHackModal from "~~/components/SponsorHackModal";
+import SponsorCard from "../components/sponsorCard/page";
 
 const Details = () => {
   const { id } = useParams();
@@ -77,6 +78,23 @@ const Details = () => {
     console.log("Account address:", account, jobPortal);
   };
 
+  const [sponsors, setSponsors] = useState([]);
+  useEffect(() => {
+    const fetchSponsors = async () => {
+      // If MetaMask is not connected, use Web3Modal to connect
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+
+      // Using ethers.js for smart contract interaction
+      const provider = new ethers.providers.Web3Provider(connection);
+      const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, provider);
+      const tx = await jobPortal.getHackathonSponsors(id);
+      console.log(tx);
+      setSponsors(tx);
+    };
+    fetchSponsors();
+  }, []);
+
   return (
     <>
       <GoBackbtn />
@@ -122,9 +140,8 @@ const Details = () => {
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg ${
-                activeTab === "details" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-              }`}
+              className={`inline-block p-4 rounded-t-lg ${activeTab === "details" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+                }`}
               id="profile-tab"
               onClick={() => handleTabClick("details")}
               role="tab"
@@ -136,9 +153,8 @@ const Details = () => {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4  rounded-t-lg  ${
-                activeTab === "sponsors" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-              }`}
+              className={`inline-block p-4  rounded-t-lg  ${activeTab === "sponsors" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+                }`}
               id="settings-tab"
               onClick={() => handleTabClick("sponsors")}
               role="tab"
@@ -150,9 +166,8 @@ const Details = () => {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg  ${
-                activeTab === "sponsor" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-              }`}
+              className={`inline-block p-4 rounded-t-lg  ${activeTab === "sponsor" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+                }`}
               id="dashboard-tab"
               onClick={() => handleTabClick("sponsor")}
               role="tab"
@@ -183,7 +198,12 @@ const Details = () => {
           role="tabpanel"
           aria-labelledby="settings-tab"
         >
-          List of sponsors here
+
+          <div className="flex gap-10 w-full">
+            {sponsors.map((sponsor, index) => (
+              <SponsorCard index={index} props={sponsor} />
+            ))}
+          </div>
         </div>
         <div
           className={`p-4 rounded-lg bg-gray-50 dark:bg-gray-800 ${activeTab === "sponsor" ? "" : "hidden"}`}

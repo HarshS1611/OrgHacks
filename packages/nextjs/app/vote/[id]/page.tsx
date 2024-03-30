@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Question from "./components/questions/page";
+import Question from "../components/questions/page";
 import GoBackbtn from "~~/components/GoBack";
 
 const Home = () => {
