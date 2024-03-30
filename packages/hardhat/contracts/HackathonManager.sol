@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
@@ -12,7 +12,7 @@ contract HackathonManager is ERC20 {
         string name;
         string organisedby;
         string description;
-        uint256 date;
+        string date;
         string city;
         string exp;
         string category;
@@ -38,8 +38,8 @@ contract HackathonManager is ERC20 {
     }
 
     // Function to create a new hackathon
-    function createHackathon(string memory _name, string memory _organisedby, string memory _description, uint256 _date, string memory _city, string memory _exp, string memory _category) public payable {
-        require(msg.value == 4 wei, "Stake amount should be 4 ETH");
+    function createHackathon(string memory _name, string memory _organisedby, string memory _description, string memory _date, string memory _city, string memory _exp, string memory _category) public payable {
+        require(msg.value == 0.005 ether, "Stake amount should be 0.005 ETH");
         Hackathon storage newHackathon = hackathons[hackathonCount];
         newHackathon.name = _name;
         newHackathon.organisedby = _organisedby;
@@ -49,13 +49,13 @@ contract HackathonManager is ERC20 {
         newHackathon.exp = _exp;
         newHackathon.category = _category;
         newHackathon.hackers.push(msg.sender);
-        xhacksToken.transfer(msg.sender, 4 * 10**18);
+        xhacksToken.transfer(msg.sender, 5 * 10**18);
         hackathonCount++;
     }
 
     // Function for hackers to join a hackathon
     function joinHackathon(uint256 _hackathonId) public payable {
-        require(msg.value == 2 wei, "Stake amount should be 2 ETH");
+        require(msg.value == 0.002 ether, "Stake amount should be 2 ETH");
         Hackathon storage hackathon = hackathons[_hackathonId];
         hackathon.hackers.push(msg.sender);
         xhacksToken.transfer(msg.sender, 2 * 10**18);
@@ -87,7 +87,7 @@ contract HackathonManager is ERC20 {
     }
 
     // Getter functions
-    function getHackathonDetails(uint256 _hackathonId) public view returns (string memory, string memory, string memory, uint256, string memory, string memory, string memory, uint256) {
+    function getHackathonDetails(uint256 _hackathonId) public view returns (string memory, string memory, string memory, string memory, string memory, string memory, string memory, uint256) {
         Hackathon storage hackathon = hackathons[_hackathonId];
         return (hackathon.name,hackathon.organisedby, hackathon.description, hackathon.date, hackathon.city, hackathon.exp, hackathon.category, hackathon.hackers.length);
     }
@@ -114,5 +114,16 @@ contract HackathonManager is ERC20 {
             allHackathons[i] = hackathons[i];
         }
     return allHackathons;
+    }
+
+    function getHackathonSponsors(uint256 _hackathonId) public view returns (Sponsor[] memory) {
+        Hackathon storage hackathon = hackathons[_hackathonId];
+        Sponsor[] memory sponsors = new Sponsor[](hackathon.sponsors.length);
+
+        for (uint256 i = 0; i < hackathon.sponsors.length; i++) {
+            sponsors[i] = hackathon.sponsors[i];
+        }
+
+        return sponsors;
     }
 }
