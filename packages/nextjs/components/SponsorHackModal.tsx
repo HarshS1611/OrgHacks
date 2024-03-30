@@ -39,7 +39,7 @@ const SponsorHackModal: React.FC<ModalFormProps> = ({ isOpen, onClose }) => {
     const signer = provider.getSigner();
     const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
     const tx = await jobPortal.sponsorHackathon(id, sponsorData.name, sponsorData.threshold, {
-      value: ethers.utils.parseUnits(sponsorData.price, "wei"),
+      value: ethers.utils.parseEther(sponsorData.price),
     });
     await tx.wait();
 
