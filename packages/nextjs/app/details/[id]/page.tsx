@@ -7,12 +7,13 @@ import { contract_add } from "../../../../hardhat/config";
 import ReferralCard from "../components/card/page";
 import FoodTimeline from "../components/foodtimeline/page";
 import ModalForm from "../components/form/page";
+import SponsorCard from "../components/sponsorCard/page";
+import VenueTimeline from "../components/venuetimeline/page";
 import { ethers } from "ethers";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import GoBackbtn from "~~/components/GoBack";
 import SponsorHackModal from "~~/components/SponsorHackModal";
-import SponsorCard from "../components/sponsorCard/page";
 
 const Details = () => {
   const { id } = useParams();
@@ -41,8 +42,8 @@ const Details = () => {
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
       const signer = provider.getSigner();
-      const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
-      const tx = await jobPortal.getHackathonDetails(id);
+      const resp = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+      const tx = await resp.getHackathonDetails(id);
       setHackDetails({
         name: tx[0],
         organizedBy: tx[1],
@@ -70,12 +71,12 @@ const Details = () => {
     console.log(ethers);
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, signer);
-    const tx = await jobPortal.joinHackathon(0, { value: ethers.utils.parseEther("0.002") });
+    const resp = new ethers.Contract(contract_add, HackathonManager.abi, signer);
+    const tx = await resp.joinHackathon(0, { value: ethers.utils.parseEther("0.002") });
     await tx.wait();
 
     // Example of using web3.js to get the user's account address
-    console.log("Account address:", account, jobPortal);
+    console.log("Account address:", account, resp);
   };
 
   const [sponsors, setSponsors] = useState([]);
@@ -87,8 +88,8 @@ const Details = () => {
 
       // Using ethers.js for smart contract interaction
       const provider = new ethers.providers.Web3Provider(connection);
-      const jobPortal = new ethers.Contract(contract_add, HackathonManager.abi, provider);
-      const tx = await jobPortal.getHackathonSponsors(id);
+      const resp = new ethers.Contract(contract_add, HackathonManager.abi, provider);
+      const tx = await resp.getHackathonSponsors(id);
       console.log(tx);
       setSponsors(tx);
     };
@@ -98,7 +99,7 @@ const Details = () => {
   return (
     <>
       <GoBackbtn />
-      <div className="bg-[#1a1e27] rounded-xl p-5 mt-7 mx-6">
+      <div className="bg-[#1a1e27] h-max rounded-xl p-4 mt-2 mx-6">
         <div className="flex flex-col md:flex-row my-2">
           <h3 className="text-lg font-semibold md:ml-2">Name:</h3>
 
@@ -133,15 +134,16 @@ const Details = () => {
           onClick={handleAddStake}
           className="block max-w-sm px-5 py-2 bg-blue-500 rounded-lg shadow hover:bg-blue-600"
         >
-          <h5 className="mb-2 text-base font-bold tracking-tight text-white">Stake</h5>
+          <h5 className=" text-base font-bold tracking-tight text-white">Stake</h5>
         </button>
       </div>
       <div className="m-4 border-b border-gray-100 dark:border-gray-600">
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" role="tablist">
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg ${activeTab === "details" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-                }`}
+              className={`inline-block p-4 rounded-t-lg ${
+                activeTab === "details" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+              }`}
               id="profile-tab"
               onClick={() => handleTabClick("details")}
               role="tab"
@@ -153,8 +155,9 @@ const Details = () => {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4  rounded-t-lg  ${activeTab === "sponsors" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-                }`}
+              className={`inline-block p-4  rounded-t-lg  ${
+                activeTab === "sponsors" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+              }`}
               id="settings-tab"
               onClick={() => handleTabClick("sponsors")}
               role="tab"
@@ -166,8 +169,9 @@ const Details = () => {
           </li>
           <li className="me-2" role="presentation">
             <button
-              className={`inline-block p-4 rounded-t-lg  ${activeTab === "sponsor" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
-                }`}
+              className={`inline-block p-4 rounded-t-lg  ${
+                activeTab === "sponsor" ? " bg-slate-800 text-blue-500" : "hover:bg-slate-700"
+              }`}
               id="dashboard-tab"
               onClick={() => handleTabClick("sponsor")}
               role="tab"
@@ -186,9 +190,10 @@ const Details = () => {
           role="tabpanel"
           aria-labelledby="dashboard-tab"
         >
+          <h3 className="text-xl text-white font-semibold mb-5 -mt-5 underline">Choose your preference:</h3>
           <div className="flex gap-x-7 text-sm text-gray-500 dark:text-gray-400">
-            <FoodTimeline />
-            <FoodTimeline />
+            <VenueTimeline hackers={hackDetails.hackers} />
+            <FoodTimeline hackers={hackDetails.hackers} />
             <ReferralCard />
           </div>
         </div>
@@ -198,10 +203,9 @@ const Details = () => {
           role="tabpanel"
           aria-labelledby="settings-tab"
         >
-
           <div className="flex gap-10 w-full">
             {sponsors.map((sponsor, index) => (
-              <SponsorCard index={index} props={sponsor} />
+              <SponsorCard key={index} index={index} props={sponsor} />
             ))}
           </div>
         </div>
