@@ -9,7 +9,7 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import HackathonCard from "~~/components/HackathonCard";
 import Navbar from "~~/components/Navbar";
-
+import { useApi, useAccount } from '@gear-js/react-hooks';
 // import { useAccount } from "wagmi";
 // import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 // import { Address } from "~~/components/scaffold-eth";
@@ -19,6 +19,7 @@ const Home = () => {
   const [hackathons, setHackathons] = useState([]);
   useEffect(() => {
     const fetchHackathons = async () => {
+
       // If MetaMask is not connected, use Web3Modal to connect
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();

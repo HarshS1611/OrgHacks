@@ -1,14 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FC } from "react";
 import Link from "next/link";
+import Web3 from "web3";
+import Web3Modal from "web3modal";
+import { getUserRole } from "~~/app/login/vara_functions";
 
 // import { useRouter } from "next/router";
 
 const Navbar: FC = () => {
   //   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [address, setAddress] = useState("");
+  const [role, setRole] = useState("");
   //   const router = useRouter();
+  useEffect(() => {
+    getAddress();
+    getRole();
+  }, []);
+
+  const getAddress = async () => {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const web3 = new Web3(connection);
+    const accounts = await web3.eth.getAccounts();
+    const account = accounts[0];
+    setAddress(account);
+  };
+
+  const getRole = async () => {
+    setRole(await getUserRole());
+  }
 
   return (
     <header className="bg-[#181c22] relative w-full z-50 px-10 md:px-24 sticky top-0 h-[72px] shadow-lg">
@@ -37,7 +59,7 @@ const Navbar: FC = () => {
           </div>
         )} */}
         <nav className="hidden md:flex items-center gap-x-11"></nav>
-        <p className="text-white text-sm font-medium">0x5a55fe7C4E1Eb4a14a2208FFeFDe42f7df2aA599</p>
+        <p className="text-white text-sm font-medium">{address} - {role}</p>
       </div>
     </header>
   );

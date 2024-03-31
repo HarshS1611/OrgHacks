@@ -26,7 +26,7 @@ const GoBackbtn = () => {
       const balance = await resp.balanceOf(account);
       console.log(balance)
       console.log(parseInt(balance._hex, 16) / 1000000000000000000);
-      setBal((balance / 10 ** 18).toString());
+      setBal(balance._hex);
     };
     fetchAccountBalance();
   }, []);
