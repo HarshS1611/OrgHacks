@@ -10,19 +10,19 @@ export const vsetUserRole = async (payload: string) => {
     providerAddress: "wss://testnet.vara.network",
   });
 
-  const gas = await api.program.calculateGas.handle(
-    programIDFT, // source id
-    "0x8b4d200af26ed9aadd79d8b43b7d687968bcd129093eb2bf9a9a2b396d4cef14", // program id
-    payload
-    , // payload
-    0, // value
-    false, // allow other panics
-    metadata,
-  );
+  // const gas = await api.program.calculateGas.handle(
+  //   programIDFT, // source id
+  //   "0x8b4d200af26ed9aadd79d8b43b7d687968bcd129093eb2bf9a9a2b396d4cef14", // program id
+  //   payload
+  //   , // payload
+  //   0, // value
+  //   false, // allow other panics
+  //   metadata,
+  // );
   const message = {
     destination: programIDFT, // programId
     payload: payload,
-    gasLimit: gas.min_limit,
+    gasLimit: 8998192450,
   };
 
   const mnemonic = "world chalk gym scout moment mandate blood family range wonder vessel slice";
