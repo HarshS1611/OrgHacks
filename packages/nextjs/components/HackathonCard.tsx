@@ -39,7 +39,7 @@ const HackathonCard = ({ index, props }: any) => {
               ) : status === "voting" ? (
                 <span className=" bg-[#25306e] text-xs font-medium text-white px-3 py-1 rounded-lg">Voting</span>
               ) : (
-                <span className="bg-[#5f1e29] text-xs font-medium text-white px-3 py-1 rounded-lg">Ended</span>
+                <span className="bg-[#5f1e29] text-xs font-medium text-white px-3 py-1 rounded-lg">Results</span>
               )}
             </div>
           </div>
