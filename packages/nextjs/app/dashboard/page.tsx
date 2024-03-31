@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function Dashboard() {
 
@@ -24,6 +25,12 @@ export default function Dashboard() {
 
     return (
         <div className="flex flex-col justify-start mx-20 w-full">
+            <div className="flex items-center mt-5 gap-2">
+                <div className="inline-block mr-2 text-white">
+                    <FaArrowLeft />
+                </div>
+                <div>Go Back</div>
+            </div>
             <p className="flex justify-start text-2xl mt-10 font-bold">Statistics</p>
 
 
