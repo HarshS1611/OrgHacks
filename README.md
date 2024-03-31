@@ -7,7 +7,7 @@ Current hackathon events rely on centralized decision-making, people with more r
 
 # Our protocol aims to do the following:
 
-##Participant Engagement:
+## Participant Engagement:
 Engage Hackathon participants in the event preparation process by allowing them to stake cryptocurrency and vote on various aspects such as venue selection, food choices, and experiences during the hackathon like bean bags, play arena, energy drinks, etc.
 
 ## Transparency and better management of sponsor funds
@@ -23,9 +23,21 @@ Creates an interactive and engaging experience by introducing a reputation score
 Ensures fairness and accountability in the event organization process by utilizing blockchain technology to record and verify all transactions and decisions.
 Eliminates the risk of bias or manipulation, enhancing the integrity and credibility of the event.
 
-# Challenges we ran into
-- Our first challenge was gamifying the experience while also being transparent on how the funds could be utilized effectively from the perspective of every user of the platform. With a lot of brainstorming, we came up with a solution that satisfied every party involved.
-- About the technical challenges, we faced our first challenge while interacting with the Lumio chain since the network was launched only very recently(2 weeks ago) with practically no testnets available for us to manually request testnet faucets from the team. The team was helpful throughout in providing the necessary requirements in situations where we faced blockers.
-Varra network: Since we had never used Rust before we faced a hard time learning their approach and workflow of how smart contracts are created and compiled on their network. We figured things out with the help of the team and a major part of our protocol involves the Vara network
+# Screenshots
+
+## Home screen
+![image](https://github.com/HarshS1611/ethproject/assets/81004813/12ba22f6-a1d8-4673-af61-f7fc988e7259)
+
+## Registration Phase
+![image](https://github.com/HarshS1611/ethproject/assets/81004813/79c8e803-667e-42a8-a77a-1c3a26027c21)
+![image](https://github.com/HarshS1611/ethproject/assets/81004813/2824a66a-a3df-4e6e-86db-722998c801e5)
+![image](https://github.com/HarshS1611/ethproject/assets/81004813/48e27f7b-fc7a-42aa-b12e-51fe28023029)
+
+## Voting Phase
+![image](https://github.com/HarshS1611/ethproject/assets/81004813/8d3b3c1a-227c-45a1-89dd-c5277fd1d344)
+
+## Dashboard
+![image](https://github.com/HarshS1611/ethproject/assets/81004813/ddd0012d-85f5-4f1b-9a67-e55ba4e43e71)
+
 
 
