@@ -1,6 +1,6 @@
 import React from "react";
 import { FC } from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Link from "next/link";
 
 // import Image from "next/image";
@@ -11,6 +11,16 @@ import Link from "next/link";
 const HackathonCard = ({ index, props }: any) => {
   const [status, setStatus] = useState("registration");
 
+  useEffect(()=>{
+    if(index === 0){
+      setStatus("registration")
+    }else if(index === 1){
+      setStatus("voting")
+    }else{
+      setStatus("result")
+    }
+  
+  },[index])
   console.log(props);
 
   return (
@@ -27,7 +37,7 @@ const HackathonCard = ({ index, props }: any) => {
               {status === "registration" ? (
                 <span className="bg-[#25a338] text-xs font-medium text-white px-3 py-1 rounded-lg">Registration</span>
               ) : status === "voting" ? (
-                <span className=" bg-[#25306e] text-xs font-medium text-white px-3 py-1 rounded-lg">Ongoing</span>
+                <span className=" bg-[#25306e] text-xs font-medium text-white px-3 py-1 rounded-lg">Voting</span>
               ) : (
                 <span className="bg-[#5f1e29] text-xs font-medium text-white px-3 py-1 rounded-lg">Ended</span>
               )}
