@@ -56,7 +56,7 @@ const HackathonCard = ({ index, props }: any) => {
       </div>
       <Link
         href={
-          status === "registration" ? `/details/${index}` : status === "voting" ? `/vote/${index}` : `/details/${index}`
+          status === "registration" ? `/details/${index}` : status === "voting" ? `/vote/${index}` : `/dashboard`
         }
         //   onClick={() => {
         //     router.push(`/models/${model._id}`);
