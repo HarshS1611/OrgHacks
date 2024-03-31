@@ -57,7 +57,7 @@ const FoodTimeline = ({ hackers }: VenueTimelineProps) => {
 
   useEffect(() => {
     // Apply the glow class based on the number of hackers
-    if (hackers >= 7) {
+    if (hackers >= 20) {
       setGlowClasses3(true);
       setGlowClasses2(false);
       setGlowClasses1(false);
